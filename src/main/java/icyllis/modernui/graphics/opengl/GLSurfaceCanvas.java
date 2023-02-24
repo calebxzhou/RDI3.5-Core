@@ -273,7 +273,7 @@ public final class GLSurfaceCanvas extends GLCanvas {
         mFontSampler = glCreateSamplers();
         glSamplerParameteri(mFontSampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         // FontAtlas MAG_FILTER is NEAREST, but it's not smooth in UI animations
-        glSamplerParameteri(mFontSampler, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glSamplerParameteri(mFontSampler, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         glSamplerParameteri(mFontSampler, GL_TEXTURE_MIN_LOD, 0);
         glSamplerParameteri(mFontSampler, GL_TEXTURE_MAX_LOD, GLFontAtlas.MIPMAP_LEVEL);
 

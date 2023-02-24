@@ -51,11 +51,11 @@ import static icyllis.modernui.graphics.opengl.GLCore.*;
 @RenderThread
 public class GLFontAtlas implements AutoCloseable {
 
-    public static final int INITIAL_SIZE = 2048;
+    public static final int INITIAL_SIZE = 4096;
     /**
      * Max mipmap level.
      */
-    public static final int MIPMAP_LEVEL = 6;
+    public static final int MIPMAP_LEVEL = 12;
 
     /**
      * Config values.
@@ -217,7 +217,7 @@ public class GLFontAtlas implements AutoCloseable {
 
             // we later generate mipmap
         }
-        mTexture.setFilterCompat(sLinearSampling ? GL_LINEAR_MIPMAP_LINEAR : GL_NEAREST, GL_NEAREST);
+        mTexture.setFilterCompat(sLinearSampling ? GL_LINEAR_MIPMAP_LINEAR : GL_NEAREST, sLinearSampling ? GL_LINEAR_MIPMAP_LINEAR : GL_NEAREST);
         if (!mColored) {
             mTexture.setSwizzleCompat(GL_ONE, GL_ONE, GL_ONE, GL_RED);
         }

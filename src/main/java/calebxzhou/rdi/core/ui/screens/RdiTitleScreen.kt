@@ -25,7 +25,7 @@ class RdiTitleScreen : Screen(Component.literal("主界面")) {
         Minecraft.getInstance().options.getSoundSourceOptionInstance(SoundSource.MUSIC).set(0.0)
         //检查RDID文件是否存在，不存在则进入注册界面
         if(!File("usr.json").exists()){
-            minecraft!!.setScreen(RdidInitScreen())
+           // minecraft!!.setScreen(RdidInitScreen())
         }
     }
     override fun shouldCloseOnEsc(): Boolean {
