@@ -6,8 +6,10 @@ import calebxzhou.rdi.core.model.RdiUser
 import calebxzhou.rdi.core.util.UuidUtils
 import joptsimple.OptionParser
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import net.minecraft.client.User
+import okhttp3.internal.wait
 import org.apache.commons.io.FileUtils
 import java.io.IOException
 import java.nio.charset.StandardCharsets
@@ -28,15 +30,21 @@ object RdiLoader {
             initUser(args)
         }
         launch {
+            //播放启动音效
             val midiSynth = MidiSystem.getSynthesizer()
             midiSynth.open()
             //get and load default instrument and channel lists
             val instr: Array<Instrument> = midiSynth.defaultSoundbank.instruments
             val mChannels = midiSynth.channels
             midiSynth.loadInstrument(instr[0]) //load an instrument
-            mChannels[0].noteOn(60, 50)
-            mChannels[0].noteOn(60, 50)
-            mChannels[0].noteOff(60);//turn of the note
+            for(i in 60..67 ){
+                mChannels[0].noteOn(i, 25)
+                delay(100)
+            }
+            for(i in 67 downTo 60){
+                mChannels[0].noteOn(i, 25)
+                delay(100)
+            }
             //TinyFileDialogs.tinyfd_notifyPopup("RDI客户端将会启动！", "", "info");
         }
         launch {

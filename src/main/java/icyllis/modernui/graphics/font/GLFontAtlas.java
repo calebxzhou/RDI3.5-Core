@@ -51,11 +51,11 @@ import static icyllis.modernui.graphics.opengl.GLCore.*;
 @RenderThread
 public class GLFontAtlas implements AutoCloseable {
 
-    public static final int INITIAL_SIZE = 512;
+    public static final int INITIAL_SIZE = 2048;
     /**
      * Max mipmap level.
      */
-    public static final int MIPMAP_LEVEL = 4;
+    public static final int MIPMAP_LEVEL = 6;
 
     /**
      * Config values.

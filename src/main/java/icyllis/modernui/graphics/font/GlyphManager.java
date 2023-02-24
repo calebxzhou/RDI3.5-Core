@@ -285,7 +285,7 @@ public class GlyphManager {
 
         if (sAntiAliasing) {
             mGraphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-                    RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                    RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
         } else {
             mGraphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                     RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);

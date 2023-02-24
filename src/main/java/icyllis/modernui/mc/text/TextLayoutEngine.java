@@ -89,7 +89,7 @@ public class TextLayoutEngine {
      */
     //public static int sDefaultFontSize;
     public static volatile boolean sFixedResolution = false;
-    public static volatile boolean sSuperSampling = false;
+    public static volatile boolean sSuperSampling = true;
     public static volatile int sTextDirection = View.TEXT_DIRECTION_FIRST_STRONG;
     /**
      * Time in seconds to recycle a render node in the cache.
@@ -385,7 +385,7 @@ public class TextLayoutEngine {
                 mResolutionLevel = Math.min(scale, 9);
             } else if (scale > 2) {
                 // super sampling, give it a bit larger, so looks smoother
-                mResolutionLevel = Math.min((int) Math.ceil(scale * 4 / 3f), 12);
+                mResolutionLevel = Math.min((int) Math.ceil(scale * 5 / 3f), 12);
             } else {
                 // 1 or 2
                 mResolutionLevel = scale;
