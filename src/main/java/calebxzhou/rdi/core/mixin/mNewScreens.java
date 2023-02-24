@@ -1,6 +1,6 @@
 package calebxzhou.rdi.core.mixin;
-import calebxzhou.rdi.core.screen.RdiLoadingOverlay;
-import calebxzhou.rdi.core.screen.RdiTitleScreen;
+import calebxzhou.rdi.core.ui.screens.RdiLoadingOverlay;
+import calebxzhou.rdi.core.ui.screens.RdiTitleScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.LoadingOverlay;
 import net.minecraft.client.gui.screens.Overlay;

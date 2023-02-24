@@ -88,8 +88,12 @@ public class OggPlayer extends Thread {
     public OggPlayer(File musicFile){
         configureInputStream(musicFile);
     }
+    public OggPlayer(InputStream stream){
+        configureInputStream(stream);
+    }
 
-    /**
+
+	/**
      * Given a string, <code>getUrl()</code> will return an URL object.
      *
      * @param pUrl the URL to be opened
@@ -147,6 +151,9 @@ public class OggPlayer extends Thread {
             }
     }
 
+	private void configureInputStream(InputStream stream) {
+		inputStream = stream;
+	}
     /**
      * This method is probably easiest understood by looking at the body.
      * However, it will - if no problems occur - call methods to initialize the

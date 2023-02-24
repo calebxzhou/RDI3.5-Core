@@ -12,6 +12,6 @@ pluginManagement {
 		}
 		gradlePluginPortal()
 	}
-}
-//include ":RDI-LucidFont"
-//project(":RDI-LucidFont").projectDir = file("../RDI-LucidFont")
+}/*
+include ":RDI-LucidFont"
+project(":RDI-LucidFont").projectDir = file("../RDI-LucidFont")*/

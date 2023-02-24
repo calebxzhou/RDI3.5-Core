@@ -1,10 +1,9 @@
 package calebxzhou.rdi.core.loader
 
-import calebxzhou.rdi.core.RdiSharedConstants
-import calebxzhou.rdi.core.misc.MusicPlayer
+import calebxzhou.rdi.core.constant.RdiSounds
+import calebxzhou.rdi.core.sound.RdiSoundPlayer
+import calebxzhou.rdi.core.util.FileUtils
 import calebxzhou.rdi.core.util.OggPlayer
-import kotlinx.coroutines.*
-import java.io.File
 
 object LoadProgressRecorder {
     @JvmField
@@ -15,11 +14,8 @@ object LoadProgressRecorder {
     @JvmStatic
 	fun onFinish() {
         loadEndTime = System.currentTimeMillis()
-
+        RdiSoundPlayer.playOgg(FileUtils.getJarAsset(RdiSounds.Startup))
         //showPopup(TrayIcon.MessageType.INFO, "您本次载入游戏用时" + displayTime + "秒", "超越了$beyondPerc%的玩家！")
-        GlobalScope.launch {
-            MusicPlayer.playOgg(File(RdiSharedConstants.RDI_SOUND_FOLDER, "startup.ogg"))
-        }
 
     }
     //载入游戏用了多少秒

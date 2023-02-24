@@ -1,6 +1,6 @@
 package calebxzhou.rdi.core.mixin;
 
-import calebxzhou.rdi.core.screen.RdiPauseScreen;
+import calebxzhou.rdi.core.ui.screens.RdiPauseScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.sounds.SoundManager;

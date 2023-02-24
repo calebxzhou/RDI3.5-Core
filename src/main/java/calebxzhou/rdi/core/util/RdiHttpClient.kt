@@ -1,6 +1,6 @@
 package calebxzhou.rdi.core.util
 
-import calebxzhou.rdi.core.RdiSharedConstants
+import calebxzhou.rdi.core.constant.RdiSharedConstants
 import calebxzhou.rdi.core.util.RdiHttpClient.getUnsafeOkHttpClient
 import okhttp3.OkHttpClient
 import java.security.SecureRandom

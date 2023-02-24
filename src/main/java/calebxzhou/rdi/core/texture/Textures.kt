@@ -1,6 +1,6 @@
 package calebxzhou.rdi.core.texture
 
-import calebxzhou.rdi.core.RdiSharedConstants.MODID
+import calebxzhou.rdi.core.constant.RdiSharedConstants.MODID
 import net.minecraft.resources.ResourceLocation
 
 object Textures {

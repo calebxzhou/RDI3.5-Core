@@ -9,12 +9,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import net.minecraft.client.User
 import org.apache.commons.io.FileUtils
-import org.jetbrains.annotations.VisibleForTesting
-import org.lwjgl.util.tinyfd.TinyFileDialogs
 import java.io.IOException
-import java.net.DatagramPacket
-import java.net.DatagramSocket
 import java.nio.charset.StandardCharsets
+import javax.sound.midi.Instrument
+import javax.sound.midi.MidiSystem
 
 
 /**
@@ -29,9 +27,18 @@ object RdiLoader {
             logger.info("开始读取用户信息")
             initUser(args)
         }
-        /*launch {
-            TinyFileDialogs.tinyfd_notifyPopup("RDI客户端将会启动！", "", "info");
-        }*/
+        launch {
+            val midiSynth = MidiSystem.getSynthesizer()
+            midiSynth.open()
+            //get and load default instrument and channel lists
+            val instr: Array<Instrument> = midiSynth.defaultSoundbank.instruments
+            val mChannels = midiSynth.channels
+            midiSynth.loadInstrument(instr[0]) //load an instrument
+            mChannels[0].noteOn(60, 50)
+            mChannels[0].noteOn(60, 50)
+            mChannels[0].noteOff(60);//turn of the note
+            //TinyFileDialogs.tinyfd_notifyPopup("RDI客户端将会启动！", "", "info");
+        }
         launch {
             logger.info("载入硬件信息")
             HwSpec.currentHwSpec = HwSpec.loadSystemSpec()
@@ -39,6 +46,7 @@ object RdiLoader {
         launch {
             logger.info("载入网络模块")
         }
+
     }
 
 

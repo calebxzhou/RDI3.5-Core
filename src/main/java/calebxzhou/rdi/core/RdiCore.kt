@@ -1,6 +1,7 @@
 package calebxzhou.rdi.core
 
 import calebxzhou.rdi.core.model.RdiUser
+import com.mojang.text2speech.Narrator
 import net.minecraft.world.level.storage.LevelStorageSource
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger

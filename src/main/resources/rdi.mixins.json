@@ -28,7 +28,7 @@
     "gameplay.mSpawnHealth",
     "gameplay.mSpider",
     "gameplay.mWitch",
-    "gameplay.mZombie",
+    "gameplay.mZombie"
   ],
   "client": [
     "AccessSplashOverlay",
@@ -46,12 +46,14 @@
     "mNewPauseMenu",
     "mNewScreens",
     "mNoDirtBackground",
+    "mNoFog",
     "mNoReportScreen",
     "mSkyAlwaysBlue",
     "mTabPlayerHud",
+    "mUsePasswordEditBox",
     "mWindowTitle"
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  }
 }

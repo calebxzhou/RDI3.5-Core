@@ -1,6 +1,6 @@
 package calebxzhou.rdi.core.misc
 
-import calebxzhou.rdi.core.RdiSharedConstants
+import calebxzhou.rdi.core.constant.RdiSharedConstants
 import calebxzhou.rdi.core.logger
 import org.quiltmc.loader.api.ModContainer
 import org.quiltmc.loader.api.QuiltLoader

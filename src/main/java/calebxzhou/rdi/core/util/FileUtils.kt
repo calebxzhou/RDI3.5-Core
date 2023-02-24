@@ -15,7 +15,7 @@ object FileUtils {
         return FileUtils::class.java.classLoader.getResource(fileInJar)!!.file.replace("%20", " ")
     }
 
-    fun getJarResourceAsStream(fileInJar: String): InputStream {
-        return RdiCore::class.java.getResourceAsStream("/assets/rdict3/$fileInJar")!!
+    fun getJarAsset(fileInJar: String): InputStream {
+        return RdiCore::class.java.getResourceAsStream("/assets/rdi-core/$fileInJar")!!
     }
 }

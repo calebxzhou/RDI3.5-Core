@@ -1,6 +1,6 @@
 package calebxzhou.rdi.core.mixin;
 
-import calebxzhou.rdi.core.screen.RdiPingNumberDisplay;
+import calebxzhou.rdi.core.ui.screens.RdiPingNumberDisplay;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.PlayerTabOverlay;

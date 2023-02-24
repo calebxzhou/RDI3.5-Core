@@ -1,5 +1,6 @@
 package calebxzhou.rdi.core
 
+import calebxzhou.rdi.core.constant.RdiSharedConstants
 import net.minecraft.resources.ResourceLocation
 
 //网络包
