@@ -27,13 +27,4 @@ object RdiSharedConstants {
     const val CORE_VERSION = 0x400
 
 
-    private val RDI_FOLDER = File("mods/rdi")
-    private val RDI_ASSETS_FOLDER = File(RDI_FOLDER,"assets")
-    private val RDI_PROFILES_FOLDER = File(RDI_FOLDER,"profiles")
-    @JvmField
-	val RDI_SOUND_FOLDER = File(RDI_ASSETS_FOLDER, "sound")
-
-    @JvmField
-    val RDI_USERS_FOLDER = File(RDI_PROFILES_FOLDER, "users")
-
 }

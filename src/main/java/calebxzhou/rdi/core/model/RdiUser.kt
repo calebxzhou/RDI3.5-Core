@@ -18,7 +18,7 @@ data class RdiUser(val uuid: String, val name: String, var pwd: String, val type
     companion object{
         @JvmStatic
         fun getUserPasswordFile(uuid: String): File {
-            return File(RdiSharedConstants.RDI_USERS_FOLDER, uuid + "_password.txt")
+            return File("_password.txt")
         }
     }
 }

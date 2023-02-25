@@ -1,9 +1,12 @@
 package calebxzhou.rdi.core.ui.screens
 
+import calebxzhou.rdi.core.constant.MessageType
+import calebxzhou.rdi.core.constant.RdiFiles
 import calebxzhou.rdi.core.constant.RdiSharedConstants
 import calebxzhou.rdi.core.loader.LoadProgressRecorder
 import calebxzhou.rdi.core.misc.ServerConnector
 import calebxzhou.rdi.core.util.DialogUtils
+import calebxzhou.rdi.core.util.GraphicUtils
 import com.mojang.blaze3d.platform.GlStateManager
 import com.mojang.blaze3d.platform.InputConstants
 import com.mojang.blaze3d.systems.RenderSystem
@@ -24,8 +27,9 @@ class RdiTitleScreen : Screen(Component.literal("主界面")) {
         //关闭音乐
         Minecraft.getInstance().options.getSoundSourceOptionInstance(SoundSource.MUSIC).set(0.0)
         //检查RDID文件是否存在，不存在则进入注册界面
-        if(!File("usr.json").exists()){
-           // minecraft!!.setScreen(RdidInitScreen())
+        if(!RdiFiles.OptionFile.exists()){
+            //minecraft!!.overlay = InfoOverlay(MessageType.Info,"")
+        minecraft!!.setScreen(RdidInitScreen())
         }
     }
     override fun shouldCloseOnEsc(): Boolean {
@@ -33,9 +37,7 @@ class RdiTitleScreen : Screen(Component.literal("主界面")) {
     }
 
     override fun render(matrices: PoseStack, mouseX: Int, mouseY: Int, delta: Float) {
-        GlStateManager._clearColor(255f, 255f, 255f,1f);
-        GlStateManager._clear(16384, Minecraft.ON_OSX)
-        RenderSystem.enableBlend()
+        GraphicUtils.clearWhite()
         font.draw(matrices, "Enter", width / 2.0f - 30, height / 2f, 0x00000000)
         //font.draw(matrices,  "△t=${"%.2f".format(LoadProgressRecorder.getLoadTimeSeconds())}s >${"%.2f".format(LoadProgressRecorder.getLoadTimePercentBeyondPlayers())}%", 0f, 0f, 0x00FFFFFF)
     }

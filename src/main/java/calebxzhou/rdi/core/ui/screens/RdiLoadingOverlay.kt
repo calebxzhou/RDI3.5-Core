@@ -2,12 +2,10 @@ package calebxzhou.rdi.core.ui.screens
 
 import calebxzhou.rdi.core.RdiCore
 import calebxzhou.rdi.core.misc.ServerConnector
-import com.mojang.blaze3d.platform.GlStateManager
-import com.mojang.blaze3d.systems.RenderSystem
+import calebxzhou.rdi.core.util.GraphicUtils
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.Util
 import net.minecraft.client.Minecraft
-import net.minecraft.client.gui.GuiComponent
 import net.minecraft.client.gui.screens.Overlay
 import net.minecraft.server.packs.resources.ReloadInstance
 import net.minecraft.util.FastColor
@@ -31,14 +29,11 @@ class RdiLoadingOverlay(minecraft: Minecraft, reload: ReloadInstance, exceptionH
     }
 
     override fun render(poseStack: PoseStack, mouseX: Int, mouseY: Int, partialTick: Float) {
-        drawString(poseStack,Minecraft.getInstance().font,"test",100,100,0x00000000)
         val scaledWidth = minecraft.window.guiScaledWidth
         val scaledHeight = minecraft.window.guiScaledHeight
         val timeNow = System.currentTimeMillis()
         val f = if (fadeOutStart > -1L) (timeNow - fadeOutStart).toFloat() / 1000.0f else -1.0f
-        GlStateManager._clearColor(1f, 1f, 1f, 1.0f)
-        GlStateManager._clear(16384, Minecraft.ON_OSX)
-        RenderSystem.enableBlend()
+        GraphicUtils.clearWhite()
         if (f < 1.0f) {
             drawProgressBar(poseStack, scaledHeight / 2 - 5, scaledWidth, scaledHeight / 2 + 5, timeNow)
         }

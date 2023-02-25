@@ -36,6 +36,6 @@
 			}
 		]
 	},
-	"mixin": ["mui.mixins.json","rdi.mixins.json"],
+	"mixin": ["mui.mixins.json","rdi.mixins.json","spruceui.mixins.json"],
 	"accessWidener" : "rdi.accesswidener"
 }
