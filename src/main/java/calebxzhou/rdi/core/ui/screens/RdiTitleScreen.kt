@@ -13,6 +13,8 @@ import com.mojang.blaze3d.systems.RenderSystem
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.text2speech.Narrator
 import net.minecraft.client.Minecraft
+import net.minecraft.client.gui.GuiComponent
+import net.minecraft.client.gui.components.Button
 import net.minecraft.client.gui.screens.OptionsScreen
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen
@@ -22,14 +24,18 @@ import net.minecraft.sounds.SoundSource
 import java.io.File
 
 class RdiTitleScreen : Screen(Component.literal("主界面")) {
+    private lateinit var  startBtn : Button
+    private lateinit var  settingsBtn: Button
+    private lateinit var  aboutBtn: Button
     public override fun init() {
+
+
         Minecraft.getInstance().updateTitle()
         //关闭音乐
         Minecraft.getInstance().options.getSoundSourceOptionInstance(SoundSource.MUSIC).set(0.0)
         //检查RDID文件是否存在，不存在则进入注册界面
         if(!RdiFiles.OptionFile.exists()){
-            //minecraft!!.overlay = InfoOverlay(MessageType.Info,"")
-        minecraft!!.setScreen(RdidInitScreen())
+       // minecraft!!.setScreen(RdidInitScreen())
         }
     }
     override fun shouldCloseOnEsc(): Boolean {
@@ -90,7 +96,6 @@ class RdiTitleScreen : Screen(Component.literal("主界面")) {
             catch (e:Exception) {
                 e.printStackTrace()
             }
-            Narrator.getNarrator().say("啊", false)
             ServerConnector.connect(this)
         }
     }

@@ -14,7 +14,7 @@ object LoadProgressRecorder {
     @JvmStatic
 	fun onFinish() {
         loadEndTime = System.currentTimeMillis()
-        RdiSoundPlayer.playOgg(FileUtils.getJarAsset(RdiSounds.Startup))
+        RdiSoundPlayer.playOgg(RdiSounds.Startup.inputStream)
         //showPopup(TrayIcon.MessageType.INFO, "您本次载入游戏用时" + displayTime + "秒", "超越了$beyondPerc%的玩家！")
 
     }

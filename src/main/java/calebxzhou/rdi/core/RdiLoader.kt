@@ -1,8 +1,10 @@
 package calebxzhou.rdi.core
 
+import calebxzhou.rdi.core.constant.RdiSounds
 import calebxzhou.rdi.core.loader.LoadProgressRecorder
 import calebxzhou.rdi.core.misc.HwSpec
 import calebxzhou.rdi.core.model.RdiUser
+import calebxzhou.rdi.core.sound.RdiSoundPlayer
 import calebxzhou.rdi.core.util.UuidUtils
 import joptsimple.OptionParser
 import kotlinx.coroutines.GlobalScope
@@ -31,21 +33,7 @@ object RdiLoader {
         }
         launch {
             //播放启动音效
-            val midiSynth = MidiSystem.getSynthesizer()
-            midiSynth.open()
-            //get and load default instrument and channel lists
-            val instr: Array<Instrument> = midiSynth.defaultSoundbank.instruments
-            val mChannels = midiSynth.channels
-            midiSynth.loadInstrument(instr[0]) //load an instrument
-            for(i in 60..67 ){
-                mChannels[0].noteOn(i, 25)
-                delay(100)
-            }
-            for(i in 67 downTo 60){
-                mChannels[0].noteOn(i, 25)
-                delay(100)
-            }
-            //TinyFileDialogs.tinyfd_notifyPopup("RDI客户端将会启动！", "", "info");
+            RdiSoundPlayer.playOgg(RdiSounds.Launch.inputStream)
         }
         launch {
             logger.info("载入硬件信息")

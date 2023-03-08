@@ -33,9 +33,9 @@ class RdiLoadingOverlay(minecraft: Minecraft, reload: ReloadInstance, exceptionH
         val scaledHeight = minecraft.window.guiScaledHeight
         val timeNow = System.currentTimeMillis()
         val f = if (fadeOutStart > -1L) (timeNow - fadeOutStart).toFloat() / 1000.0f else -1.0f
-        GraphicUtils.clearWhite()
+        GraphicUtils.clearGreen()
         if (f < 1.0f) {
-            drawProgressBar(poseStack, scaledHeight / 2 - 5, scaledWidth, scaledHeight / 2 + 5, timeNow)
+            drawProgressBar(poseStack, scaledHeight -12, scaledWidth, scaledHeight , timeNow)
         }
         if (f >= 1.0f) {
             minecraft.overlay = null
@@ -70,24 +70,11 @@ class RdiLoadingOverlay(minecraft: Minecraft, reload: ReloadInstance, exceptionH
     private fun drawProgressBar(matrices: PoseStack, minY: Int, maxX: Int, maxY: Int, timeNow: Long) {
         var timeRatio = (timeNow - startTime) / maximumLoadBarLength
         if (timeRatio > 1) {
-            timeRatio = timeRatio - timeRatio.toInt()
+            timeRatio -= timeRatio.toInt()
             maximumLoadBarLength = RandomUtils.nextFloat(2700f, 4500f)
         }
-        try {
-            val logLines = try {
-                FileUtils.readLines(File("./logs/debug.log"), StandardCharsets.UTF_8)
-            } catch (e: Exception) {
-                listOf("")
-            }
-            val logLastLine = logLines[logLines.size - 1]
-            if(RdiCore.gameReady)
-                Minecraft.getInstance().font.draw(matrices,logLastLine,0f,0f,0x000000)
-            Minecraft.getInstance().window.setTitle(logLastLine)
-        } catch (e: IOException) {
-            throw RuntimeException(e)
-        }
         val progressToDisplayPixels = Math.round(maxX * timeRatio)
-        val barColor = FastColor.ARGB32.color(255, 64, 64, 64)
-        fill(matrices, 2, minY + 2, progressToDisplayPixels, maxY - 2, barColor)
+        val barColor = FastColor.ARGB32.color(255, 255,255,255)
+        fill(matrices, 0, minY + 2, progressToDisplayPixels, maxY - 2, barColor)
     }
 }

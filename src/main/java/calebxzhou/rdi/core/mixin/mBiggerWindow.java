@@ -1,6 +1,8 @@
 package calebxzhou.rdi.core.mixin;
 
+import calebxzhou.rdi.core.misc.WindowSizeManager;
 import com.mojang.blaze3d.platform.*;
+import kotlin.Pair;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -37,14 +39,8 @@ public class mBiggerWindow {
 			at = @At(value = "INVOKE",target = "Lorg/lwjgl/glfw/GLFW;glfwDefaultWindowHints()V"))
 	private void max(WindowEventHandler windowEventHandler, ScreenManager screenManager, DisplayData displayData, String string, String string2, CallbackInfo ci, Optional optional, Monitor monitor){
 		VideoMode mode = monitor.getCurrentMode();
-		if(mode.getWidth()>=1920&&mode.getHeight()>=1080) {
-			windowedWidth=width=1600;
-			windowedHeight=height=900;
-		}else{
-			windowedWidth=width=1280;
-			windowedHeight=height=720;
-		}
-
-
+		Pair<Integer, Integer> wh = WindowSizeManager.getWidthHeightByResolution(mode.getWidth(), mode.getHeight());
+		windowedWidth=width=wh.getFirst();
+		windowedHeight=height=wh.getSecond();
 	}
 }

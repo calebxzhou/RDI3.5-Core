@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mci.yojitsu.YojitsuRep.Rep001.mapper.Kpi003Mapper">
+<select id="getOutputList002" resultType="mci.yojitsu.YojitsuRep.Rep002.dataset.Rep002Dataset">
+    SELECT
+    K.YOSANNENDO AS yosannendo      <!--予算年度-->
+    , S.DESCRIPTION AS siteName        <!--サイト名-->
+    , (K.BUNSHO || '_' || A.DESCRIPTION ) AS bunshoName      <!--分掌名-->
+    , (L.JIGYOBUMON || '_' || J.DESCRIPTION) AS jigyobumonName  <!--事業部門名-->
+    , L.DESCRIPTION AS daibunruiName   <!--プラント大分類名-->
+    , L.SHOBUNRIUUIMEI AS kobunruiName    <!--プラント小分類名-->
+    , K.SHIHANKI AS shihanki        <!--四半期-->
+    ,SUM(K.KEIKAKU) AS keikaku         <!--計画-->  sum
+    ,SUM(K.OCHITUKI) AS ochituki        <!--落付-->  sum
+    ,SUM(K.JISSEKI) AS jisseki         <!--実績-->  sum
+
+    FROM
+    KPI_003 K
+    <!--サイトID-->
+    LEFT JOIN SITEAUTH H ON(
+    H.SITEID = K.SITEID
+    )
+    <!--サイト名-->
+    LEFT JOIN SITE S ON(
+    S.SITEID = H.SITEID
+    )
+    <!--分掌名取得-->
+    LEFT JOIN ALNDOMAIN A ON (
+    A.DOMAINID='BUNSHO'
+    AND A.VALUE= K.BUNSHO
+    )
+    <!--事業部門名-->
+    LEFT JOIN CMN_JIGYOBUMONMST J ON(
+    L.JIGYOBUMON = J.JIGYOBUMON
+    )
+    <!--プラント大分類名と小分類名と事業部門名-->
+    LEFT JOIN LOCATIONS L ON (
+    K.PLANT = L.LOCATION
+    AND K.SITEID = L.SITEID
+    AND S.STATUS IN('運転','休止')
+    )
+
+    WHERE
+
+    <!--予算年度-->
+    K.YOSANNENDO=rep002Form.yosannendo
+
+    <!--サイトを選択した場合-->
+    <if test="rep002Form.siteId != null">
+        AND K.SITEID=rep002Form.siteId
+    </if>
+
+    <!--サイトを選択しない場合-->
+    <if test="rep002Form.siteId is null">
+        AND K.SITEID=userInfoDS.siteList.siteId
+    </if>
+
+    <!--プラントを選択した場合-->
+    <if test="rep002Form.plant != null">
+        AND K.PLANT = rep002Form.plant
+    </if>
+
+    <!--分掌を選択した場合-->
+    <if test=" rep002Form.bunshou != null">
+        AND K.BUNSHO IN rep002Form.bunshou
+    </if>
+
+    <!--分掌を選択しない場合-->T
+    <if test=" rep002Form.bunshou != null">
+        AND K.BUNSHO IN userInfoDS.bunshoList.bunsho
+    </if>
+
+    <!--エリア区分を選択した場合-->
+    <if test=" rep002Form.areakubun != null">
+        AND (K.PLANT,K.SITEID) IN(
+        SELECT M.LOCATION,M.SITEID
+        FROM LOCATIONS M
+        WHERE M.AREAKUBUN IN(rep002Form.areakubun)
+        AND M.STATUS IN('運転','休止')
+        )
+    </if>
+
+    <!--プラント休止を選択した場合-->
+    <if test="rep002Form.plant != null">
+        AND
+        (K.PLANT,K.SITEID) IN
+        (
+        SELECT S.LOCATION,S.SITEID
+        FROM LOCATIONS S
+        WHERE S.STATUS IN('運転','休止')
+        )
+    </if>
+
+    <!--プラント休止を選択しない場合-->
+    <if test="rep002Form.plant is null">
+        AND
+        (K.PLANT,K.SITEID) IN
+        (
+        SELECT S.LOCATION,S.SITEID
+        FROM LOCATIONS S
+        WHERE S.STATUS IN('運転')
+        )
+    </if>
+
+    <!--MCI工場固定費対象を選択した場合-->
+    <if test="rep002Form.mcikojokoteihitaisho != null">
+        AND K.MCIKOJOKOTEIHITAISHO IN (rep002Form.mcikojokoteihitaisho)
+    </if>
+
+    GROUP BY
+    K.YOSANNENDO     <!--予算年度-->
+    ,K.SITEID         <!--サイトID-->
+    ,K.BUNSHO         <!--分掌名ID-->
+    ,L.JIGYOBUMON     <!--事業部門ID-->
+    ,L.DESCRIPTION    <!--プラント大分類名-->
+    ,L.SHOBUNRIUUIMEI <!--プラント小分類名-->
+    ,K.SHIHANKI        <!--四半期-->
+
+
+    ORDER BY
+    K.SITEID         <!--サイトID-->
+    ,K.BUNSHO         <!--分掌名ID-->
+    ,L.JIGYOBUMON     <!--事業部門ID-->
+    ,L.DESCRIPTION    <!--プラント大分類名-->
+    ,L.SHOBUNRIUUIMEI <!--プラント小分類名-->
+    ,K.SHIHANKI       <!--四半期-->
+</select>
+        </mapper>
