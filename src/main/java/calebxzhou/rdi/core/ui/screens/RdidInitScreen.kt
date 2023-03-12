@@ -71,9 +71,7 @@ class RdidInitScreen:Screen(Component.literal("RDID注册与登录")) {
 
     private fun register() {
 
-
     }
-
 
 
     override fun render(poseStack: PoseStack, mouseX: Int, mouseY: Int, partialTick: Float) {
@@ -81,7 +79,7 @@ class RdidInitScreen:Screen(Component.literal("RDID注册与登录")) {
         GlStateManager._clear(16384, Minecraft.ON_OSX)
         RenderSystem.enableBlend()
         if(isRegisterMode){
-            drawString(poseStack, font, "感谢您选择RDI服务器！首先您需要注册一个RDID（RDI账号）。", baseWidth, baseHeight, 0xffffff)
+            drawString(poseStack, font, "注册一个RDID（RDI账号）。", baseWidth, baseHeight, 0xffffff)
             drawString(poseStack, font, "RDID是您游玩本服务器的唯一凭证。因此，当您注册完成以后，务必牢记用户名与密码。", baseWidth, baseHeight+10, 0xffffff)
             drawString(poseStack, font, "1.输入自己想要的RDID用户名。用户名里只能有0-9数字、大小写字母。", baseWidth, baseHeight+10*2, 0xffffff)
             drawString(poseStack, font, "2.输入自己想要的密码。", baseWidth, baseHeight+10*5, 0xffffff)

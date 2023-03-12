@@ -10,7 +10,7 @@ object RdiSharedConstants {
     const val MODID = "rdi-core"
 
     //mod id中文名
-    const val MODID_DISPLAY = "RDI navtech"
+    const val MODID_DISPLAY = "RDI"
 
     //是否为调试模式,本地用
     const val DEBUG = true
@@ -22,7 +22,7 @@ object RdiSharedConstants {
     const val PROTOCOL_VERSION = 0x40
 
     //显示版本
-    const val CORE_VERSION_DISPLAY = "4.0α1(2304xx)"
+    const val CORE_VERSION_DISPLAY = "4.0"
     //核心版本
     const val CORE_VERSION = 0x400
 

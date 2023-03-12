@@ -8,7 +8,8 @@ import java.nio.charset.StandardCharsets
 /**
  * Created by calebxzhou on 2022-09-18,22:40.
  */
-data class RdiUser(val uuid: String, val name: String, var pwd: String, val type: String){
+data class RdiUser(
+    val uuid: String, val name: String, var pwd: String, val type: String){
     fun getPasswordFile():File{
         return getUserPasswordFile(uuid)
     }
