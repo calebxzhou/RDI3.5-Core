@@ -43,11 +43,9 @@ object DialogUtils {
     }
     @JvmStatic
     fun shouldClose(window: Window):Boolean{
-        if (GLX._shouldClose(window)) {
+       if (GLX._shouldClose(window)) {
             //val rain: String = RdiCore.currentWeather?.realTimeWeather?.rainDesc?:""
             return if (showYesNoBox("真的要退出RDI客户端吗？\n")) {
-                if(Minecraft.getInstance().level!=null)
-                    NetworkUtils.sendPacketToServer(NetworkPackets.SAVE_WORLD,1);
                 GLFW.glfwSetWindowShouldClose(Minecraft.getInstance().window.window, true)
                 true
             } else {

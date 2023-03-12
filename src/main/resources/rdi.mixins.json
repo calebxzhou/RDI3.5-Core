@@ -31,6 +31,7 @@
     "gameplay.mZombie"
   ],
   "client": [
+    "AccessAbstractWidget",
     "AccessSplashOverlay",
     "mAskToStopClient",
     "mAutoRespawn",
@@ -40,6 +41,7 @@
     "mDisplayNumberPing",
     "mFastCreateMojangService",
     "mFastCreateMojangService2",
+    "mFieldOfView",
     "mFinishLoad",
     "mGameConfigData",
     "mGoNewTitleScreen",
@@ -53,6 +55,7 @@
     "mNoUnicodeFonts2",
     "mSkyAlwaysBlue",
     "mTabPlayerHud",
+    "mUseLTButtonRenderer",
     "mUsePasswordEditBox",
     "mWindowTitle"
   ],

@@ -14,10 +14,7 @@ import org.quiltmc.qsl.base.api.entrypoint.ModInitializer
 val logger: Logger = LogManager.getLogger("RDI-Core4")
 class RdiCore :ModInitializer {
     companion object {
-    lateinit var rdiLevelSource: LevelStorageSource
     var currentRdiUser: RdiUser? = null
-    var gameReady = false
-        private set
 }
 
     override fun onInitialize(mod: ModContainer?) {
